@@ -22,7 +22,7 @@
         "name" : "Name of Output Folder",
         "type" : "String",
         "description" : "The directory with the output dataset will be saved.",
-	    "value-key" : "BIDS_DIR",
+	    "value-key" : "OUTPUT_DIR",
         "optional" : false
 
     },{
