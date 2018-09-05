@@ -1,10 +1,11 @@
 {
-  "name": "ndmg\\bids\\cbrain",
+  "name": "ndmg\\bids\\cbrain 2",
   "tool-version": "v0.1.0",
   "description": "See https://github.com/BIDS-Apps/ndmg",
   "command-line": "mkdir -p OUTPUT_DIR1 OUTPUT_DIR2; ndmg_bids BIDS_DIR OUTPUT_DIR1 OUTPUT_DIR2 ANALYSIS_LEVEL PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
   "container-image": {
-    "type": "docker",
+    "type": "singularity",
+    "index": "docker://",
     "image": "bids/ndmg"
   },
   "schema-version": "0.5",
