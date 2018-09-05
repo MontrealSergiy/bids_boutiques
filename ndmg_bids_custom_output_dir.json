@@ -104,7 +104,7 @@
 	],
 
     "output-files": [{
-	    "id" : "output_dir_name",
+	    "id" : "output_dir_1",
         "name" : "Output directory",
 	    "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
         "optional" : false,
