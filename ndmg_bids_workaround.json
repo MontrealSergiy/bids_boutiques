@@ -55,7 +55,7 @@
 	"command-line-flag": "PARTICIPANT",
 
 	"description": "Participant Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel)."
-    },	
+    },
 		{"id" : "group_level",
 	"name" : "Group level",
 	"type" : "Flag",
