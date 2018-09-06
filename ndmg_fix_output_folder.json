@@ -76,15 +76,8 @@
 	"command-line-flag": "--log",
 	"optional": true,
 	"description": "Determines axis scale for plotting."
-    }, {
-	"id" : "debug",
-	"name" : "Debug",
-	"type" : "Flag",
-	"value-key": "DEBUG",
-	"command-line-flag": "--debug",
-	"optional": true,
-	"description": "flag to store temp files along the path of processing."
-    }, {
+    },
+	{
     "id": "atlas",
 	"name": "Atlas",
 	"type": "String",
@@ -92,7 +85,16 @@
 	"command-line-flag": "--atlas",
 	"optional": true,
 	"description": "The atlas being analyzed in QC (if you only want one)."
-	}
+	},
+	{
+	"id" : "debug",
+	"name" : "Debug",
+	"type" : "Flag",
+	"value-key": "DEBUG",
+	"command-line-flag": "--debug",
+	"optional": true,
+	"description": "flag to store temp files along the path of processing."
+    }
 	],
 
     "output-files" : [{

@@ -95,6 +95,15 @@
       "description": "Whether or not to break degrees into hemispheres or not."
     },
     {
+      "id": "atlas",
+      "name": "Atlas",
+      "type": "String",
+      "value-key": "ATLAS",
+      "command-line-flag": "--atlas",
+      "optional": true,
+      "description": "The atlas being analyzed in QC (if you only want one)."
+    },
+    {
       "id": "log",
       "name": "Log",
       "type": "Flag",
@@ -111,15 +120,6 @@
       "command-line-flag": "--debug",
       "optional": true,
       "description": "flag to store temp files along the path of processing."
-    },
-    {
-      "id": "atlas",
-      "name": "Atlas",
-      "type": "String",
-      "value-key": "ATLAS",
-      "command-line-flag": "--atlas",
-      "optional": true,
-      "description": "The atlas being analyzed in QC (if you only want one)."
     }
   ],
   "output-files": [
@@ -137,8 +137,6 @@
       "path-template": "OUTPUT_DIR2",
       "optional": true
     }
-
-
   ],
   "groups": [
     {
@@ -152,21 +150,27 @@
       "mutually-exclusive": true,
       "one-is-required": true
     },
-	{
-	    "id": "label",
-	    "name": "Label",
-	    "members" : [ "session_label", "participant_label" ],
-	    "description" : "Using specific sessions or participants (for session or participant analysis levels).",
-	    "mutually-exclusive": true,
-	    "one-is-required": false
-	},
-	{
-	    "id": "plotting",
-	    "name": "Plot options",
-	    "members" : [ "minimal", "hemispheres" ],
-	    "description" : "Select plotting options",
-	    "mutually-exclusive": false,
-	    "one-is-required": false
-	},
+    {
+      "id": "label",
+      "name": "Label",
+      "members": [
+        "session_label",
+        "participant_label"
+      ],
+      "description": "Using specific sessions or participants (for session or participant analysis levels).",
+      "mutually-exclusive": true,
+      "one-is-required": false
+    },
+    {
+      "id": "plotting",
+      "name": "Plot options",
+      "members": [
+        "minimal",
+        "hemispheres"
+      ],
+      "description": "Select plotting options",
+      "mutually-exclusive": false,
+      "one-is-required": false
+    }
   ]
 }
