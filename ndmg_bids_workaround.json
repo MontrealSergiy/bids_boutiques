@@ -2,7 +2,7 @@
     "name" : "ndmg_bids_var_output 4",
     "tool-version" : "v0.1.0",
     "description" : "BIDS ndmg. Structural connectome estimation package and pipeline adapted for BIDS\nusage: ndmg_bids  [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]\n                 [--session_label SESSION_LABEL] [--bucket BUCKET]\n                [--remote_path REMOTE_PATH] [--push_data] [--dataset DATASET]\n                 [--atlas ATLAS] [--minimal] [--hemispheres] [--log] [--debug]\n                 bids_dir output_dir {session,participant,group}\n\nThis is an end-to-end connectome estimation pipeline from sMRI and DTI images\n\npositional arguments:\n  bids_dir              The directory with the input dataset formatted\n                        according to the BIDS standard.\n  output_dir            The directory where the output files should be stored.\n                        If you are running group level analysis this folder\n                        should be prepopulated with the results of the\n                        participant level analysis.\n  {session,participant,group}\n                        Level of the analysis that will be performed. Multiple\n                        participant level analyses can be run independently\n                        (in parallel) using the same output_dir.\n\noptional arguments:\n  -h, --help            show this help message and exit\n  --participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]\n                        The label(s) of the participant(s) that should be\n                        analyzed. The label corresponds to\n                        sub-<participant_label> from the BIDS spec (so it does\n                        not include \"sub-\"). If this parameter is not provided\n                        all subjects should be analyzed. Multiple participants\n                        can be specified with a space separated list.\n  --session_label SESSION_LABEL\n                        The label(s) of the session that should be analyzed.\n                        The label corresponds to ses-<participant_label> from\n                        the BIDS spec (so it does not include \"ses-\"). If this\n                        parameter is not provided all sessions should be\n                        analyzed. Multiple sessions can be specified with a\n                        space separated list.\n  --bucket BUCKET       The name of an S3 bucket which holds BIDS organized\n                        data. You must have built your bucket with credentials\n                        to the S3 bucket you wish to access.\n  --remote_path REMOTE_PATH\n                        The path to the data on your S3 bucket. The data will\n                        be downloaded to the provided bids_dir on your\n                        machine.\n  --push_data           flag to push derivatives back up to S3.\n  --dataset DATASET     The name of the dataset you are perfoming QC on.\n  --atlas ATLAS         The atlas being analyzed in QC (if you only want one).\n  --minimal             Determines whether to show a minimal or full set of\n                        plots.\n  --hemispheres         Whether or not to break degrees into hemispheres or\n                        not\n  --log                 Determines axis scale for plotting.\n  --debug               flag to store temp files along the path of processing.\n See https://github.com/BIDS-Apps/ndmg for details",
-    "command-line" : "mkdir -p OUTPUT_DIR1; ndmg_bids BIDS_DIR OUTPUT_DIR GROUP PARTICIPANT SESSION PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
+    "command-line" : "mkdir -p OUTPUT_DIR; ndmg_bids BIDS_DIR OUTPUT_DIR GROUP PARTICIPANT SESSION PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
     "container-image": {
         "type": "singularity",
 		"image": "BIDS-APPS/ndmg:v0.1.0",
@@ -22,7 +22,7 @@
         "name" : "Name of Output Folder",
         "type" : "String",
         "description" : "The directory with the output dataset will be saved.",
-	    "value-key" : "OUTPUT_DIR1",
+	    "value-key" : "OUTPUT_DIR",
         "optional" : false
 
     },
@@ -31,10 +31,10 @@
       "id": "participant_level_analysis_dir",
       "name": "Participants dir",
       "type": "File",
-      "description": "Directory containing the output of the participants analysis.",
+      "description": "Directory containing the output of the participants analysis. (Required only for group level analysis)",
       "value-key": "OUTPUT_DIR2",
       "optional": true,
-      "path-template": "OUTPUT_DIR1",
+      "path-template": "OUTPUT_DIR",
 	  "input-requires": ["group_level"]
     },
 		{
@@ -154,7 +154,7 @@
         "name" : "Output directory",
 	    "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
         "optional" : false,
-		"path-template": "OUTPUT_DIR1"
+		"path-template": "OUTPUT_DIR"
     }],
     "groups" : [
 	{
@@ -167,7 +167,7 @@
 	},
 
 	{
-	    "id": "label",
+	    "id": "level",
 	    "name": "Label",
 	    "members" : [ "session_level", "participant_level", "group_level" ],
 	    "description" : "Narrowing to specific sessions or participants (for session or participant analysis levels).",
