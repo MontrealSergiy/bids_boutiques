@@ -67,7 +67,7 @@
 	"value-key": "HEMISPHERES",
 	"command-line-flag": "--hemispheres",
 	"optional": true,
-	"description": "Limit to show hemispheres or full set of plots."
+	"description": "Whether or not to break degrees into hemispheres or not."
     }, {
 	"id" : "log",
 	"name" : "Log",

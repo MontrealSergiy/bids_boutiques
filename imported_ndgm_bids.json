@@ -72,6 +72,23 @@
 	    "description" : "For a participants analysis, an output directory name must be specified. For a group analysis, a directory containing the output of participant-level analyses must be selected. ",
 	    "mutually-exclusive":true,
 	    "one-is-required": true
+	},
+
+	{
+	    "id": "label",
+	    "name": "Label",
+	    "members" : [ "session_label", "participant_label" ],
+	    "description" : "Narrowing to specific sessions or participants (for session or participant analysis levels).",
+	    "mutually-exclusive": true,
+	    "one-is-required": false
+	},
+	{
+	    "id": "plotting",
+	    "name": "Plot options",
+	    "members" : [ "minimal", "hemispheres" ],
+	    "description" : "Different levels of completeness",
+	    "mutually-exclusive": false,
+	    "one-is-required": false
 	}
     ]
 }
