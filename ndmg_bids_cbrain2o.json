@@ -20,15 +20,15 @@
     },
     {
       "id": "output_dir_name",
-      "name": "Output directory name",
+      "name": "New output directory name",
       "type": "String",
-      "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
+      "description": "The directory where the output files should be stored. If you are running a group level analysis, use another option.",
       "value-key": "OUTPUT_DIR1",
       "optional": true
     },
     {
       "id": "participant_level_analysis_dir",
-      "name": "Participants dir",
+      "name": "Derivative and output directory",
       "type": "File",
       "description": "Directory containing the output of the participants analysis.",
       "value-key": "OUTPUT_DIR2",
@@ -126,14 +126,14 @@
     {
       "id": "output_dir_1",
       "name": "Output directory",
-      "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
+      "description": "The directory where the output files should be stored. ",
       "path-template": "OUTPUT_DIR1",
       "optional": true
     },
     {
       "id": "output_dir_2",
-      "name": "Output directory",
-      "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
+      "name": "Derivatives and output directory",
+      "description": "The directory where the output files should be stored. If you are running a group level analysis, use another options.",
       "path-template": "OUTPUT_DIR2",
       "optional": true
     }

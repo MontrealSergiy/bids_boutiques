@@ -1,32 +1,31 @@
 {
-    "name" : "ndmg_bids_var_output 4",
-    "tool-version" : "v0.1.0",
-    "description" : "BIDS ndmg. Structural connectome estimation package and pipeline adapted for BIDS\nusage: ndmg_bids  [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]\n                 [--session_label SESSION_LABEL] [--bucket BUCKET]\n                [--remote_path REMOTE_PATH] [--push_data] [--dataset DATASET]\n                 [--atlas ATLAS] [--minimal] [--hemispheres] [--log] [--debug]\n                 bids_dir output_dir {session,participant,group}\n\nThis is an end-to-end connectome estimation pipeline from sMRI and DTI images\n\npositional arguments:\n  bids_dir              The directory with the input dataset formatted\n                        according to the BIDS standard.\n  output_dir            The directory where the output files should be stored.\n                        If you are running group level analysis this folder\n                        should be prepopulated with the results of the\n                        participant level analysis.\n  {session,participant,group}\n                        Level of the analysis that will be performed. Multiple\n                        participant level analyses can be run independently\n                        (in parallel) using the same output_dir.\n\noptional arguments:\n  -h, --help            show this help message and exit\n  --participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]\n                        The label(s) of the participant(s) that should be\n                        analyzed. The label corresponds to\n                        sub-<participant_label> from the BIDS spec (so it does\n                        not include \"sub-\"). If this parameter is not provided\n                        all subjects should be analyzed. Multiple participants\n                        can be specified with a space separated list.\n  --session_label SESSION_LABEL\n                        The label(s) of the session that should be analyzed.\n                        The label corresponds to ses-<participant_label> from\n                        the BIDS spec (so it does not include \"ses-\"). If this\n                        parameter is not provided all sessions should be\n                        analyzed. Multiple sessions can be specified with a\n                        space separated list.\n  --bucket BUCKET       The name of an S3 bucket which holds BIDS organized\n                        data. You must have built your bucket with credentials\n                        to the S3 bucket you wish to access.\n  --remote_path REMOTE_PATH\n                        The path to the data on your S3 bucket. The data will\n                        be downloaded to the provided bids_dir on your\n                        machine.\n  --push_data           flag to push derivatives back up to S3.\n  --dataset DATASET     The name of the dataset you are perfoming QC on.\n  --atlas ATLAS         The atlas being analyzed in QC (if you only want one).\n  --minimal             Determines whether to show a minimal or full set of\n                        plots.\n  --hemispheres         Whether or not to break degrees into hemispheres or\n                        not\n  --log                 Determines axis scale for plotting.\n  --debug               flag to store temp files along the path of processing.\n See https://github.com/BIDS-Apps/ndmg for details",
-    "command-line" : "mkdir -p OUTPUT_DIR; ndmg_bids BIDS_DIR OUTPUT_DIR GROUP PARTICIPANT SESSION PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
-    "container-image": {
-        "type": "singularity",
-		"image": "BIDS-APPS/ndmg:v0.1.0",
-		"index": "shub://"
+  "name": "ndmg_bids_var_output 4",
+  "tool-version": "v0.1.0",
+  "description": "BIDS ndmg. Structural connectome estimation package and pipeline adapted for BIDS\nusage: ndmg_bids  [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]\n                 [--session_label SESSION_LABEL] [--bucket BUCKET]\n                [--remote_path REMOTE_PATH] [--push_data] [--dataset DATASET]\n                 [--atlas ATLAS] [--minimal] [--hemispheres] [--log] [--debug]\n                 bids_dir output_dir {session,participant,group}\n\nThis is an end-to-end connectome estimation pipeline from sMRI and DTI images\n\npositional arguments:\n  bids_dir              The directory with the input dataset formatted\n                        according to the BIDS standard.\n  output_dir            The directory where the output files should be stored.\n                        If you are running group level analysis this folder\n                        should be prepopulated with the results of the\n                        participant level analysis.\n  {session,participant,group}\n                        Level of the analysis that will be performed. Multiple\n                        participant level analyses can be run independently\n                        (in parallel) using the same output_dir.\n\noptional arguments:\n  -h, --help            show this help message and exit\n  --participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]\n                        The label(s) of the participant(s) that should be\n                        analyzed. The label corresponds to\n                        sub-<participant_label> from the BIDS spec (so it does\n                        not include \"sub-\"). If this parameter is not provided\n                        all subjects should be analyzed. Multiple participants\n                        can be specified with a space separated list.\n  --session_label SESSION_LABEL\n                        The label(s) of the session that should be analyzed.\n                        The label corresponds to ses-<participant_label> from\n                        the BIDS spec (so it does not include \"ses-\"). If this\n                        parameter is not provided all sessions should be\n                        analyzed. Multiple sessions can be specified with a\n                        space separated list.\n  --bucket BUCKET       The name of an S3 bucket which holds BIDS organized\n                        data. You must have built your bucket with credentials\n                        to the S3 bucket you wish to access.\n  --remote_path REMOTE_PATH\n                        The path to the data on your S3 bucket. The data will\n                        be downloaded to the provided bids_dir on your\n                        machine.\n  --push_data           flag to push derivatives back up to S3.\n  --dataset DATASET     The name of the dataset you are perfoming QC on.\n  --atlas ATLAS         The atlas being analyzed in QC (if you only want one).\n  --minimal             Determines whether to show a minimal or full set of\n                        plots.\n  --hemispheres         Whether or not to break degrees into hemispheres or\n                        not\n  --log                 Determines axis scale for plotting.\n  --debug               flag to store temp files along the path of processing.\n See https://github.com/BIDS-Apps/ndmg for details",
+  "command-line": "mkdir -p OUTPUT_DIR; ndmg_bids BIDS_DIR OUTPUT_DIR GROUP PARTICIPANT PARTICIPANT_LEVEL SESSION_LEVEL GROUP_LEVEL PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
+  "container-image": {
+    "type": "singularity",
+    "image": "BIDS-APPS/ndmg:v0.1.0",
+    "index": "shub://"
+  },
+  "schema-version": "0.5",
+  "inputs": [
+    {
+      "id": "bids_dir",
+      "name": "BIDS directory",
+      "type": "File",
+      "description": "The directory with the input dataset formatted according to the BIDS standard.",
+      "value-key": "BIDS_DIR",
+      "optional": false
     },
-    "schema-version" : "0.5",
-    "inputs" : [{
-        "id" : "bids_dir",
-        "name" : "BIDS directory",
-        "type" : "File",
-        "description" : "The directory with the input dataset formatted according to the BIDS standard.",
-	    "value-key" : "BIDS_DIR",
-        "optional" : false
-
-    },  {
-        "id" : "output_dir_name",
-        "name" : "Name of Output Folder",
-        "type" : "String",
-        "description" : "The directory with the output dataset will be saved.",
-	    "value-key" : "OUTPUT_DIR",
-        "optional" : false
-
+    {
+      "id": "output_dir_name",
+      "name": "Name of Output Folder",
+      "type": "String",
+      "description": "The directory with the output dataset will be saved.",
+      "value-key": "OUTPUT_DIR",
+      "optional": false
     },
-
     {
       "id": "participant_level_analysis_dir",
       "name": "Participants dir",
@@ -35,152 +34,144 @@
       "value-key": "OUTPUT_DIR2",
       "optional": true,
       "path-template": "OUTPUT_DIR",
-	  "input-requires": ["group_level"]
+      "requires-inputs": [
+        "group_level"
+      ]
     },
-		{
-	"id" : "analysis_level",
-	"name" : "Analysis level",
-	"type" : "String",
-	"optional" : false,
-	"value-key" : "ANALYSIS_LEVEL",
-	"value-choices" : [ "participant", "group", "session" ],
 
-	"description": "Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel)."
-    }, 
-		{"id" : "participant_level",
-	"name" : "Participant level",
-	"type" : "Flag",
-	"optional" : true,
-	"value-key" : "PARTICIPANT",
-	"command-line-flag": "PARTICIPANT",
-
-	"description": "Participant Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel)."
+    {
+      "id": "participant_level",
+      "name": "Participant level",
+      "type": "Flag",
+      "optional": true,
+      "value-key": "PARTICIPANT",
+      "command-line-flag": "PARTICIPANT",
+      "description": "Participant Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel)."
     },
-		{"id" : "group_level",
-	"name" : "Group level",
-	"type" : "Flag",
-	"optional" : true,
-	"value-key" : "GROUP",
-	"command-line-flag": "GROUP",
-
-	"description": "Group Level of the analysis that will be performed. "
-    },		
-		
-	{"id" : "session_level",
-	"name" : "Session level",
-	"type" : "Flag",
-	"optional" : true,
-	"value-key" : "SESSION",
-	"command-line-flag": "SESSION",
-    "input-enables":
-	{ "session_label"}
-
-	"description": "Session Level of the analysis that will be performed. "
-    },		
-		
-		{
-	"id" : "participant_label",
-	"name" : "Participant label",
-	"type" : "String",
-	"value-key": "PARTICIPANT_LABEL",
-    "depends": "participant_level",			
-	"command-line-flag": "--participant_label",
-	"list" : true,
-	"optional": true,
-	"description": "The label(s) of the participant(s) that should be analyzed. The label corresponds to sub-<participant_label> from the BIDS spec (so it does not include \"sub-\"). If this parameter is not provided all subjects will be analyzed. Multiple participants can be specified with a space separated list."
-    }, {
-	"id" : "session_label",
-	"name" : "Session label",
-	"type" : "String",
-	"value-key": "SESSION_LABEL",
-
-	"command-line-flag": "--session_label",
-	"list" : true,
-	"optional": true,
-	"description": "The label(s) of the session(s) that should be analyzed. The label corresponds to ses-<session_label>, an extension of the BIDS spec (so it does not include \"ses-\"). If this parameter is not provided all sessions will be analyzed. Multiple sessions can be specified with a space separated list."
-    }, {
-	"id" : "dataset",
-	"name" : "Dataset",
-	"type" : "String",
-	"value-key": "DATASET",
-	"command-line-flag": "--dataset",
-	"optional": true,
-	"description": "The name of the dataset you are perfoming QC on."
-    }, {
-	"id" : "minimal",
-	"name" : "Minimal",
-	"type" : "Flag",
-	"value-key": "MINIMAL",
-	"command-line-flag": "--minimal",
-	"optional": true,
-	"description": "Determines whether to show a minimal or full set of plots."
-    }, {
-	"id" : "hemispheres",
-	"name" : "Hemispheres",
-	"type" : "Flag",
-	"value-key": "HEMISPHERES",
-	"command-line-flag": "--hemispheres",
-	"optional": true,
-	"description": "Whether or not to break degrees into hemispheres or not."
-    }, {
-	"id" : "log",
-	"name" : "Log",
-	"type" : "Flag",
-	"value-key": "LOG",
-	"command-line-flag": "--log",
-	"optional": true,
-	"description": "Determines axis scale for plotting."
-    }, {
-	"id" : "debug",
-	"name" : "Debug",
-	"type" : "Flag",
-	"value-key": "DEBUG",
-	"command-line-flag": "--debug",
-	"optional": true,
-	"description": "flag to store temp files along the path of processing."
-    }, {
-    "id": "atlas",
-	"name": "Atlas",
-	"type": "String",
-	"value-key": "ATLAS",
-	"command-line-flag": "--atlas",
-	"optional": true,
-	"description": "The atlas being analyzed in QC (if you only want one)."
-	}
-	],
-
-    "output-files": [{
-	    "id" : "output_dir_name",
-        "name" : "Output directory",
-	    "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
-        "optional" : false,
-		"path-template": "OUTPUT_DIR"
-    }],
-    "groups" : [
-	{
-	    "id": "label",
-	    "name": "Label",
-	    "members" : [ "session_label", "participant_label" ],
-	    "description" : "Narrowing to specific sessions or participants (for session or participant analysis levels).",
-	    "mutually-exclusive": true,
-	    "one-is-required": false
-	},
-
-	{
-	    "id": "level",
-	    "name": "Label",
-	    "members" : [ "session_level", "participant_level", "group_level" ],
-	    "description" : "Narrowing to specific sessions or participants (for session or participant analysis levels).",
-	    "mutually-exclusive": true,
-	    "one-is-required": true
-	},
-	{
-	    "id": "plotting",
-	    "name": "Plot options",
-	    "members" : [ "minimal", "hemispheres" ],
-	    "description" : "Different levels of completeness",
-	    "mutually-exclusive": false,
-	    "one-is-required": false
-	}
-    ]
+    {
+      "id": "group_level",
+      "name": "Group level",
+      "type": "Flag",
+      "optional": true,
+      "value-key": "GROUP",
+      "command-line-flag": "GROUP",
+      "description": "Group Level of the analysis that will be performed. "
+    },
+    {
+      "id": "session_level",
+      "name": "Session level",
+      "type": "Flag",
+      "optional": true,
+      "value-key": "SESSION",
+      "command-line-flag": "SESSION",
+      "description": "Session Level of the analysis that will be performed. "
+    },
+    {
+      "id": "participant_label",
+      "name": "Participant label",
+      "type": "String",
+      "value-key": "PARTICIPANT_LABEL",
+      "command-line-flag": "--participant_label",
+      "list": true,
+      "optional": true,
+      "description": "The label(s) of the participant(s) that should be analyzed. The label corresponds to sub-<participant_label> from the BIDS spec (so it does not include \"sub-\"). If this parameter is not provided all subjects will be analyzed. Multiple participants can be specified with a space separated list."
+    },
+    {
+      "id": "session_label",
+      "name": "Session label",
+      "type": "String",
+      "value-key": "SESSION_LABEL",
+      "command-line-flag": "--session_label",
+      "list": true,
+      "optional": true,
+      "description": "The label(s) of the session(s) that should be analyzed. The label corresponds to ses-<session_label>, an extension of the BIDS spec (so it does not include \"ses-\"). If this parameter is not provided all sessions will be analyzed. Multiple sessions can be specified with a space separated list."
+    },
+    {
+      "id": "dataset",
+      "name": "Dataset",
+      "type": "String",
+      "value-key": "DATASET",
+      "command-line-flag": "--dataset",
+      "optional": true,
+      "description": "The name of the dataset you are perfoming QC on."
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "type": "Flag",
+      "value-key": "MINIMAL",
+      "command-line-flag": "--minimal",
+      "optional": true,
+      "description": "Determines whether to show a minimal or full set of plots."
+    },
+    {
+      "id": "hemispheres",
+      "name": "Hemispheres",
+      "type": "Flag",
+      "value-key": "HEMISPHERES",
+      "command-line-flag": "--hemispheres",
+      "optional": true,
+      "description": "Whether or not to break degrees into hemispheres or not."
+    },
+    {
+      "id": "log",
+      "name": "Log",
+      "type": "Flag",
+      "value-key": "LOG",
+      "command-line-flag": "--log",
+      "optional": true,
+      "description": "Determines axis scale for plotting."
+    },
+    {
+      "id": "debug",
+      "name": "Debug",
+      "type": "Flag",
+      "value-key": "DEBUG",
+      "command-line-flag": "--debug",
+      "optional": true,
+      "description": "flag to store temp files along the path of processing."
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "type": "String",
+      "value-key": "ATLAS",
+      "command-line-flag": "--atlas",
+      "optional": true,
+      "description": "The atlas being analyzed in QC (if you only want one)."
+    }
+  ],
+  "output-files": [
+    {
+      "id": "output_dir_name",
+      "name": "Output directory",
+      "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
+      "optional": false,
+      "path-template": "OUTPUT_DIR"
+    }
+  ],
+  "groups": [
+    {
+      "id": "label",
+      "name": "Label",
+      "members": [
+        "session_label",
+        "participant_label"
+      ],
+      "description": "Narrowing to specific sessions or participants (for session or participant analysis levels).",
+      "mutually-exclusive": true,
+      "one-is-required": false
+    },
+    {
+      "id": "plotting",
+      "name": "Plot options",
+      "members": [
+        "minimal",
+        "hemispheres"
+      ],
+      "description": "Plotting options",
+      "mutually-exclusive": false,
+      "one-is-required": false
+    }
+  ]
 }
