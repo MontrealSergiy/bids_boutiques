@@ -134,7 +134,7 @@
       "id": "output_dir_2",
       "name": "Derivatives and output directory",
       "description": "The directory where the output files should be stored. If you are running a group level analysis, use another options.",
-      "path-template": "OUTPUT_DIR2",
+      "path-template": "group-OUTPUT_DIR2",
       "optional": true
     }
   ],
