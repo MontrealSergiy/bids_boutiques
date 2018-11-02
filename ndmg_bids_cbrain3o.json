@@ -20,12 +20,12 @@
     },
     {
       "id": "output_dir_name",
-      "name": "New output directory name",
+      "name": "Output directory name",
       "type": "String",
-      "description": "The directory where the output files should be stored. ",
+      "description": "The directory will be created, where the output files would be saved. ",
       "value-key": "OUTPUT_DIR1",
       "optional": false,
-      "default-value": "NDMG_RESULTS"
+      "default-value": "ndmg_results"
     },
     {
       "id": "analysis_level",
@@ -42,7 +42,7 @@
     },
      {
       "id": "participant_level_analysis_dir",
-      "name": "Derivative and output directory",
+      "name": "Directory with previously computed participant level result (Mandatory for group analysis)",
       "type": "File",
       "description": "The directory containing the output of the participants level analysis is required If you are running a GROUP level analysis, use another option.",
       "value-key": "PARTICIPANT_DIR",
