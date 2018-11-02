@@ -1,8 +1,8 @@
 {
-  "name": "ndmg\\bids\\cbrain\\2.o",
+  "name": "ndmg (BIDS app)",
   "tool-version": "v0.1.0",
   "description": "See https://github.com/BIDS-Apps/ndmg",
-  "command-line": "mkdir -p OUTPUT_DIR1 OUTPUT_DIR2; ndmg_bids BIDS_DIR OUTPUT_DIR1 OUTPUT_DIR2 ANALYSIS_LEVEL PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
+  "command-line": "mkdir -p OUTPUT_DIR1; if [ ! z PARTICIPANT_DIR]; then mv -a PARTICIPANT_DIR/* OUTPUT_DIR1/; fi; ndmg_bids BIDS_DIR OUTPUT_DIR1 PARTICIPANT_DIR ANALYSIS_LEVEL PARTICIPANT_LABEL SESSION_LABEL DATASET ATLAS MINIMAL HEMISPHERES LOG DEBUG",
   "container-image": {
     "type": "singularity",
     "index": "docker://",
@@ -22,17 +22,10 @@
       "id": "output_dir_name",
       "name": "New output directory name",
       "type": "String",
-      "description": "The directory where the output files should be stored. If you are running a group level analysis, use another option.",
+      "description": "The directory where the output files should be stored. ",
       "value-key": "OUTPUT_DIR1",
-      "optional": true
-    },
-    {
-      "id": "participant_level_analysis_dir",
-      "name": "Derivative and output directory",
-      "type": "File",
-      "description": "Directory containing the results of the participants analysis.",
-      "value-key": "OUTPUT_DIR2",
-      "optional": true
+      "optional": false,
+      "default-value": "NDMG_RESULTS"
     },
     {
       "id": "analysis_level",
@@ -47,9 +40,17 @@
       ],
       "description": "Level of the analysis that will be performed. Multiple participant level analyses can be run independently (in parallel)."
     },
+     {
+      "id": "participant_level_analysis_dir",
+      "name": "Derivative and output directory",
+      "type": "File",
+      "description": "The directory containing the output of the participants level analysis is required If you are running a GROUP level analysis, use another option.",
+      "value-key": "PARTICIPANT_DIR",
+      "optional": true
+    },
     {
       "id": "participant_label",
-      "name": "Participant label",
+      "name": "Participant labels",
       "type": "String",
       "value-key": "PARTICIPANT_LABEL",
       "command-line-flag": "--participant_label",
@@ -59,7 +60,7 @@
     },
     {
       "id": "session_label",
-      "name": "Session label",
+      "name": "Session labels",
       "type": "String",
       "value-key": "SESSION_LABEL",
       "command-line-flag": "--session_label",
@@ -134,21 +135,20 @@
       "id": "output_dir_2",
       "name": "Derivatives and output directory",
       "description": "The directory where the output files should be stored. If you are running a group level analysis, use another options.",
-      "path-template": "OUTPUT_DIR2_group_results",
+      "path-template": "group-PARTICIPANT_DIR",
       "optional": true
     }
   ],
   "groups": [
     {
       "id": "output_directory",
-      "name": "Output Directory",
+      "name": "Derivative directories",
       "members": [
         "output_dir_name",
         "participant_level_analysis_dir"
       ],
-      "description": "For a participants analysis, an output directory name must be specified. For a group analysis, a directory that already contains the output of participant-level analyses must be selected. ",
-      "mutually-exclusive": true,
-      "one-is-required": true
+      "description": "For a group analysis, a directory that already contains the output of participant-level analyses must be selected. ",
+      "mutually-exclusive": false
     },
     {
       "id": "label",
@@ -163,14 +163,28 @@
     },
     {
       "id": "plotting",
-      "name": "Plot options",
+      "name": "Plotting",
       "members": [
         "minimal",
-        "hemispheres"
+        "hemispheres",
+        "log"
       ],
       "description": "Select plotting options",
       "mutually-exclusive": false,
       "one-is-required": false
+    },
+    {
+      "id": "qa",
+      "name": "Quality",
+      "members": [
+        "debug",
+        "atlas",
+        "dataset"
+      ],
+      "description": "Quality and trouble-shouting",
+      "mutually-exclusive": false,
+      "one-is-required": false
+
     }
   ]
 }
